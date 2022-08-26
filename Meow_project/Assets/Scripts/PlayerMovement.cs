@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
+    bool PressW;
+
     // Update is called once per frame
     void Update()
     {
@@ -28,8 +30,7 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(moveX, moveY).normalized;
-
-        if(moveX == 0f && moveY == 0f)
+        if (moveX == 0f && moveY == 0f)
         {
             animator.SetBool("isMoving", false);
         }
@@ -37,7 +38,15 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isMoving", true);
         }
-        if(moveX > 0f)
+        if (moveDir.y == 1f)
+        {
+            animator.SetBool("isYwalk", true);
+        }
+        else
+        {
+            animator.SetBool("isYwalk", false);
+        }
+        if (moveX > 0f)
         {
             spriteRenderer.flipX = false;
         }
