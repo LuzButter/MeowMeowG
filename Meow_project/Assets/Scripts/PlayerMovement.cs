@@ -30,7 +30,45 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(moveX, moveY).normalized;
-        if (moveX == 0f && moveY == 0f)
+        
+
+        if (moveX == 0f && moveY == 0)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            if (moveX > 0f)
+            {
+                animator.SetBool("isMoving", true);
+                animator.SetInteger("Facing", 1);
+                spriteRenderer.flipX = true;
+            }
+            else if (moveX < 0f)
+            {
+                animator.SetBool("isMoving", true);
+                animator.SetInteger("Facing", 2);
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                if (moveY > 0f)
+                {
+                    animator.SetBool("isMoving", true);
+                    animator.SetInteger("Facing", 3);
+                    spriteRenderer.flipX = false; 
+                }
+                else
+                {
+                    animator.SetBool("isMoving", true);
+                    animator.SetInteger("Facing", 4);
+                    spriteRenderer.flipX = false;
+                }
+            }
+        }
+
+
+        /*if (moveX == 0f && moveY == 0f)
         {
             animator.SetBool("isMoving", false);
         }
@@ -53,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         else if(moveX < 0f)
         {
             spriteRenderer.flipX = true;
-        }
+        }*/
         
     }
 

@@ -23,12 +23,12 @@ public class NPC_Controller : MonoBehaviour
         if(acting)
         {
             acting = false;
-            animator.SetBool("action",false);
+            animator.SetBool("Interation",false);
         }
         else
         {
             acting = true;
-            animator.SetBool("action",true);
+            animator.SetBool("Interation",true);
         }
         
     }
