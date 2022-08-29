@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static GameObject Player;
+
+    public GameObject[] players;
 
     public float MoveSpeed;
     public Rigidbody2D rb;
@@ -11,12 +17,16 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
-    bool PressW;
-
+    private void Start()
+    {
+        Player = this.gameObject;
+        DontDestroyOnLoad(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
         ProcessInpute();
+        
     }
 
     void FixedUpdate()
@@ -98,6 +108,15 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDir.x*MoveSpeed*Time.fixedDeltaTime, moveDir.y*MoveSpeed*Time.fixedDeltaTime);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 1)
+        {
+            Destroy(players[1]);
+        }
     }
 }
 
