@@ -7,7 +7,12 @@ public class Transparent : MonoBehaviour
     public SpriteRenderer sr;
 
     public float Alpha=1f;
-    public float AlphaT;
+    public float AlphaT=0.92f;
+
+    private void Start()
+    {
+        sr = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
